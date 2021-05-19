@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
+import './Timer.css';
+
 const Timer = () => {
   const [elapsedTime, setElapsedTime] = useState(0);
-  const [totalTime, setTotalTime] = useState(0);
   const [timerId, setTimerId] = useState();
 
   const handleStart = () => {
@@ -41,7 +42,7 @@ const Timer = () => {
   return (
     <div className='container'>
       <div className='timer'>
-        <div className='title'></div>
+        <div className='title'>Timer title</div>
         <div className='time'>{toHHMMSS(elapsedTime)}</div>
         <button onClick={handleStart}>Start</button>
         <button onClick={handleStop}>Stop</button>
