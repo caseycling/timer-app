@@ -46,12 +46,6 @@ const Timer = () => {
         <button onClick={handleStart}>Start</button>
         <button onClick={handleStop}>Stop</button>
       </div>
-      <div className='timer'>
-        <div className='title'></div>
-        <div className='time'>{toHHMMSS(elapsedTime)}</div>
-        <button onClick={handleStart}>Start</button>
-        <button onClick={handleStop}>Stop</button>
-      </div>
     </div>
   );
 };
