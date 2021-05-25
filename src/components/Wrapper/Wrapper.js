@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Timer from '../Timer/Timer';
+import axios from 'axios';
 
 import './Wrapper.css';
 
@@ -7,9 +8,19 @@ function Wrapper() {
   const [timers, setTimers] = useState([]);
   const [title, setTitle] = useState('');
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/')
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
   const handleChange = (event) => {
     setTitle(event.target.value);
-    console.log(title);
   };
 
   const addTimer = () => {
@@ -17,6 +28,7 @@ function Wrapper() {
     let allTimers = timers.slice();
     allTimers.push(timer);
     setTimers(allTimers);
+    setTitle('');
   };
 
   return (

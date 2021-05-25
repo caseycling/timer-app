@@ -10,8 +10,10 @@
 .timers-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2em;
+  /* grid-gap: 1em; */
   align-items: center;
+  justify-items: center;
+  justify-content: center;
   border-radius: 1em;
 }
 
