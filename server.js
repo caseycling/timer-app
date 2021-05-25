@@ -1,27 +1,35 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const cors = require('cors');
+const PORT = process.env.PORT || 3001;
 require('dotenv/config');
 
 //Middleware
 app.use(cors());
 
-// //Import routes
-// const postRoutes = require('./routes/posts');
+//Import routes
+const timerRoutes = require('./routes/timers');
 
-// app.use('/posts', postRoutes);
+app.use('/', timerRoutes);
 
-// //ROUTES
-// app.get('/', (req, res) => {
-//   res.send('Hello World!');
-// });
-
-//Connect to db
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
-  console.log('Connected to mongo db');
+// ROUTES
+app.get('/', (req, res) => {
+  res.send(res);
 });
 
+//Connect to db
+mongoose
+  .connect(process.env.DB_CONNECTION, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('succesful connection to db');
+  })
+  .catch((error) => console.log(error));
+
 //Start server
-app.listen(3001);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

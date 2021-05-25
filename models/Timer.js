@@ -5,10 +5,17 @@ const TimerSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  time: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   date: {
     type: Date,
     default: Date.now,
   },
 });
 
-module.exports = mongoose.model('timer', TimerSchema);
+const TimerModel = mongoose.model('times', TimerSchema);
+
+module.exports = TimerModel;
