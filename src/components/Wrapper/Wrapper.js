@@ -9,32 +9,45 @@ function Wrapper() {
   const [title, setTitle] = useState('');
 
   useEffect(() => {
+    getTimers();
+  }, []);
+
+  const handleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const getTimers = () => {
     axios
       .get('http://localhost:3001/')
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        setTimers(res.data);
+        console.log(timers);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const addTimer = () => {
+    axios
+      .post(`http://localhost:3001/${title}`)
+      .then((res) => {
         console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  });
-  const handleChange = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const addTimer = () => {
-    const timer = <Timer title={title} key={timers.length} />;
-    let allTimers = timers.slice();
-    allTimers.push(timer);
-    setTimers(allTimers);
+    getTimers();
     setTitle('');
   };
 
   return (
     <div className='wrapper'>
       <div className='timers-container'>
-        {timers}
+        {timers.map((timer) => {
+          return <Timer title={timer.title} id={timer._id} time={timer.time} />;
+        })}
         <div>
           <br />
           <input

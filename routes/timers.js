@@ -14,4 +14,17 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/:title', async (req, res) => {
+  console.log(req.params);
+  try {
+    const newTimer = new TimerModel({ title: req.params.title });
+    newTimer.save().then((res) => {
+      console.log(res);
+    });
+    console.log(newTimer);
+  } catch (err) {
+    console.log(`Err: ${err}`);
+  }
+});
+
 module.exports = router;
