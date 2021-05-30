@@ -29,7 +29,7 @@
   grid-column: 2/ 3;
   /* grid-row-start: 90000; */
   height: 100%;
-  padding: 0 1em 0;
+  padding: 0 em 0;
   margin-bottom: 1em;
 
   border: none;
