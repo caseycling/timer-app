@@ -46,7 +46,7 @@ function Wrapper() {
     <div className='wrapper'>
       <div className='timers-container'>
         {timers.map((timer) => {
-          return <Timer title={timer.title} id={timer._id} time={timer.time} />;
+          return <Timer title={timer.title} id={timer._id} time={0} />;
         })}
         <div>
           <br />
